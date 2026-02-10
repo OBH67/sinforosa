@@ -11,12 +11,7 @@ import { ArrowLeft, Coffee } from 'lucide-react'
 export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState('all')
 
-  // Theme & Language (dark/light + translations)
-  const [theme, setTheme] = useState(() => {
-    try {
-      return typeof window !== 'undefined' ? localStorage.getItem('theme') || 'light' : 'light'
-    } catch (e) { return 'light' }
-  })
+  // Language translations
   const [lang, setLang] = useState(() => {
     try {
       return typeof window !== 'undefined' ? localStorage.getItem('lang') || 'es' : 'es'
@@ -24,18 +19,9 @@ export default function MenuPage() {
   })
 
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      if (theme === 'dark') document.documentElement.classList.add('dark')
-      else document.documentElement.classList.remove('dark')
-      try { localStorage.setItem('theme', theme) } catch (e) {}
-    }
-  }, [theme])
-
-  useEffect(() => {
     try { localStorage.setItem('lang', lang) } catch (e) {}
   }, [lang])
 
-  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
   const toggleLang = () => setLang((l) => (l === 'es' ? 'en' : 'es'))
 
   const translations = {
@@ -104,48 +90,45 @@ export default function MenuPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#D4B5A0] dark:bg-[#0f0f0f]">
+    <div className="min-h-screen bg-[#D4B5A0]">
       {/* Professional page load effect */}
       <ReloadBlur variant="blur" delay={100} duration={800} />
 
       {/* Header */}
-      <div className="bg-[#D4B5A0]/95 dark:bg-[#1a1a1a]/95 backdrop-blur-sm sticky top-0 z-50 border-b border-[#A68B75]/20">
-        <div className="container mx-auto px-4 py-6">
+      <div className="bg-[#D4B5A0]/95 backdrop-blur-sm sticky top-0 z-50 border-b border-[#A68B75]/20">
+        <div className="container mx-auto px-4 py-4 sm:py-6">
           <div className="flex items-center justify-between max-w-7xl mx-auto">
-            <Link href="/" className="flex items-center gap-2 text-[#5C4A3D] dark:text-[#E8D5C4] hover:text-[#3D2E23] dark:hover:text-[#D4B5A0] transition-colors">
-              <ArrowLeft className="w-5 h-5" />
-              <span className="font-medium">{t('menu.backHome')}</span>
+            <Link href="/" className="flex items-center gap-2 text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">
+              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="font-medium text-sm sm:text-base">{t('menu.backHome')}</span>
             </Link>
 
-            <div className="flex items-center gap-3">
-              <Coffee className="w-8 h-8 text-[#5C4A3D] dark:text-[#E8D5C4]" />
-              <h1 className="text-2xl md:text-3xl font-serif italic text-[#5C4A3D] dark:text-[#E8D5C4]">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Coffee className="w-6 h-6 sm:w-8 sm:h-8 text-[#5C4A3D]" />
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-serif italic text-[#5C4A3D]">
                 {t('menu.title')}
               </h1>
             </div>
 
-            <div className="flex items-center gap-4">
-              <button onClick={toggleTheme} aria-label="toggle-theme" className="w-10 h-10 rounded-full border border-[#A68B75] dark:border-[#E8D5C4] flex items-center justify-center hover:bg-[#A68B75] dark:hover:bg-[#E8D5C4] hover:text-white dark:hover:text-[#0f0f0f] transition-colors">
-                {theme === 'dark' ? '🌙' : '☀️'}
-              </button>
-              <button onClick={toggleLang} aria-label="toggle-lang" className="px-3 py-2 rounded-full border border-[#A68B75] dark:border-[#E8D5C4] text-sm text-[#5C4A3D] dark:text-[#E8D5C4] bg-transparent hover:bg-[#A68B75] dark:hover:bg-[#E8D5C4] hover:text-white dark:hover:text-[#0f0f0f] transition-colors">{lang === 'es' ? 'ES' : 'EN'}</button>
+            <div className="flex items-center gap-2 sm:gap-4">
+              <button onClick={toggleLang} aria-label="toggle-lang" className="px-3 py-2 rounded-full border border-[#A68B75] text-xs sm:text-sm text-[#5C4A3D] bg-transparent hover:bg-[#A68B75] hover:text-white transition-colors">{lang === 'es' ? 'ES' : 'EN'}</button>
             </div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8 sm:py-12">
         <div className="max-w-7xl mx-auto">
           {/* Note */}
-          <div className="text-center mb-8">
-            <p className="text-[#5C4A3D]/60 dark:text-[#E8D5C4]/60 font-light text-xs tracking-widest uppercase">
+          <div className="text-center mb-6 sm:mb-8">
+            <p className="text-[#5C4A3D]/60 font-light text-xs tracking-widest uppercase">
               {t('menu.note')}
             </p>
           </div>
           
           {/* Filter Buttons */}
-          <div className="flex flex-wrap gap-3 justify-center mb-12">
+          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-8 sm:mb-12">
             {[
               { id: 'all', label: t('menu.filters.all') },
               { id: 'coffee', label: t('menu.filters.coffee') },
@@ -155,10 +138,10 @@ export default function MenuPage() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`rounded-full px-8 py-2.5 text-sm font-normal transition-all duration-200 ${
+                className={`rounded-full px-6 sm:px-8 py-2 sm:py-2.5 text-xs sm:text-sm font-normal transition-all duration-200 ${
                   activeCategory === cat.id
-                    ? 'bg-[#3D2E23] dark:bg-[#E8D5C4] text-white dark:text-[#0f0f0f] shadow-md'
-                    : 'bg-white/60 dark:bg-[#1a1a1a]/60 text-[#5C4A3D] dark:text-[#E8D5C4] hover:bg-white/80 dark:hover:bg-[#1a1a1a]/80'
+                    ? 'bg-[#3D2E23] text-white shadow-md'
+                    : 'bg-white/60 text-[#5C4A3D] hover:bg-white/80'
                 }`}
               >
                 {cat.label}
@@ -167,16 +150,16 @@ export default function MenuPage() {
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 mb-8 sm:mb-12">
             {getFilteredItems().map((item, idx) => (
               <ProductCard key={idx} item={item} onOrder={(it) => console.log('Order', it)} />
             ))}
           </div>
 
           {/* Back to top button */}
-          <div className="text-center mt-16">
+          <div className="text-center mt-12 sm:mt-16">
             <Link href="/">
-              <Button className="rounded-full bg-[#5C4A3D] dark:bg-[#E8D5C4] hover:bg-[#3D2E23] dark:hover:bg-[#D4B5A0] text-white dark:text-[#0f0f0f] px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105">
+              <Button className="rounded-full bg-[#5C4A3D] hover:bg-[#3D2E23] text-white px-8 sm:px-10 py-4 text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105">
                 {t('menu.backHome')}
               </Button>
             </Link>

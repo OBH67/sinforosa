@@ -17,12 +17,7 @@ export default function Home() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [navOpen, setNavOpen] = useState(false)
 
-  // Theme & Language (dark/light + translations)
-  const [theme, setTheme] = useState(() => {
-    try {
-      return typeof window !== 'undefined' ? localStorage.getItem('theme') || 'light' : 'light'
-    } catch (e) { return 'light' }
-  })
+  // Language translations
   const [lang, setLang] = useState(() => {
     try {
       return typeof window !== 'undefined' ? localStorage.getItem('lang') || 'es' : 'es'
@@ -30,18 +25,9 @@ export default function Home() {
   })
 
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      if (theme === 'dark') document.documentElement.classList.add('dark')
-      else document.documentElement.classList.remove('dark')
-      try { localStorage.setItem('theme', theme) } catch (e) {}
-    }
-  }, [theme])
-
-  useEffect(() => {
     try { localStorage.setItem('lang', lang) } catch (e) {}
   }, [lang])
 
-  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
   const toggleLang = () => setLang((l) => (l === 'es' ? 'en' : 'es'))
 
   const handleNavClick = (id) => {
@@ -147,11 +133,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0f0f0f]">
-      {/* Professional page load effect - try variants: 'blur', 'fade', 'scale-blur', 'minimal' */}
+    <div className="min-h-screen bg-white">
+      {/* Professional page load effect */}
       <ReloadBlur variant="blur" delay={100} duration={800} />
       {/* HERO SECTION - Landing Page Design */}
-      <section id="home" className="relative min-h-screen overflow-hidden">
+      <section id="home" className="relative min-h-screen overflow-hidden pt-safe">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -166,38 +152,35 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#E8D5C4]/88 via-[#D4B5A0]/85 to-[#C9A88A]/80" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-8 py-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
           {/* Navigation */}
-          <nav className="flex items-center justify-between mb-12">
-            <div className="flex gap-4">
-              <button className="w-10 h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
-                <Facebook className="w-4 h-4" />
+          <nav className="flex items-center justify-between mb-6 sm:mb-8 lg:mb-12">
+            <div className="flex gap-1 sm:gap-2 lg:gap-3">
+              <button className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
+                <Facebook className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
-              <button className="w-10 h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
-                <Coffee className="w-4 h-4" />
+              <button className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
+                <Coffee className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
-              <button className="w-10 h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
-                <MapPin className="w-4 h-4" />
+              <button className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
+                <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
-              <button className="w-10 h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
-                <Phone className="w-4 h-4" />
+              <button className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
+                <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
             </div>
-            <div className="hidden md:flex flex-1 justify-center gap-12">
-              <a href="#home" onClick={(e)=>{e.preventDefault(); handleNavClick('home')}} className="text-sm font-light tracking-widest uppercase text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">{t('nav.home')}</a>
-              <a href="#about" onClick={(e)=>{e.preventDefault(); handleNavClick('about')}} className="text-sm font-light tracking-widest uppercase text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">{t('nav.about')}</a>
-              <a href="#menu" onClick={(e)=>{e.preventDefault(); handleNavClick('menu')}} className="text-sm font-light tracking-widest uppercase text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">{t('nav.menu')}</a>
-              <a href="#contact" onClick={(e)=>{e.preventDefault(); handleNavClick('contact')}} className="text-sm font-light tracking-widest uppercase text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">{t('nav.contact')}</a>
+            <div className="hidden md:flex flex-1 justify-center gap-8 lg:gap-12">
+              <a href="#home" onClick={(e)=>{e.preventDefault(); handleNavClick('home')}} className="text-xs lg:text-sm font-light tracking-widest uppercase text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">{t('nav.home')}</a>
+              <a href="#about" onClick={(e)=>{e.preventDefault(); handleNavClick('about')}} className="text-xs lg:text-sm font-light tracking-widest uppercase text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">{t('nav.about')}</a>
+              <a href="#menu" onClick={(e)=>{e.preventDefault(); handleNavClick('menu')}} className="text-xs lg:text-sm font-light tracking-widest uppercase text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">{t('nav.menu')}</a>
+              <a href="#contact" onClick={(e)=>{e.preventDefault(); handleNavClick('contact')}} className="text-xs lg:text-sm font-light tracking-widest uppercase text-[#5C4A3D] hover:text-[#3D2E23] transition-colors">{t('nav.contact')}</a>
             </div>
-            <div className="flex items-center gap-4">
-              <button onClick={toggleTheme} aria-label="toggle-theme" className="w-10 h-10 rounded-full border border-[#A68B75] flex items-center justify-center hover:bg-[#A68B75] hover:text-white transition-colors">
-                {theme === 'dark' ? '🌙' : '☀️'}
-              </button>
-              <button onClick={toggleLang} aria-label="toggle-lang" className="px-3 py-2 rounded-full border border-[#A68B75] text-sm text-[#5C4A3D] bg-transparent hover:bg-[#A68B75] hover:text-white transition-colors">{lang === 'es' ? 'ES' : 'EN'}</button>
+            <div className="flex items-center gap-1 sm:gap-2 lg:gap-4">
+              <button onClick={toggleLang} aria-label="toggle-lang" className="px-2 py-1 sm:px-3 sm:py-2 rounded-full border border-[#A68B75] text-xs sm:text-sm text-[#5C4A3D] bg-transparent hover:bg-[#A68B75] hover:text-white transition-colors">{lang === 'es' ? 'ES' : 'EN'}</button>
               <button onClick={() => setNavOpen((s) => !s)} className="md:hidden p-2 rounded-md border border-[#A68B75]">
-                <svg className="w-6 h-6 text-[#5C4A3D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#5C4A3D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>
-              <div role="button" onClick={() => handleNavClick('home')} className="hidden md:flex w-24 h-24 rounded-full overflow-hidden bg-[#A68B75] flex items-center justify-center shadow-xl cursor-pointer">
+              <div role="button" onClick={() => handleNavClick('home')} className="hidden lg:flex w-20 h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden bg-[#A68B75] items-center justify-center shadow-xl cursor-pointer">
                 <Image src="/logo.png" alt="Sinforosa Café" width={96} height={96} className="w-full h-full object-cover" />
               </div>
             </div>
@@ -205,7 +188,7 @@ export default function Home() {
 
           {/* Mobile menu overlay */}
           {navOpen && (
-            <div className="fixed inset-0 z-50 bg-white dark:bg-[#0b0b0b] md:hidden flex flex-col items-center justify-center gap-6">
+            <div className="fixed inset-0 z-50 bg-white md:hidden flex flex-col items-center justify-center gap-6">
               <a href="#home" onClick={(e)=>{e.preventDefault(); handleNavClick('home')}} className="text-2xl font-medium uppercase">{t('nav.home')}</a>
               <a href="#about" onClick={(e)=>{e.preventDefault(); handleNavClick('about')}} className="text-2xl font-medium uppercase">{t('nav.about')}</a>
               <a href="#menu" onClick={(e)=>{e.preventDefault(); handleNavClick('menu')}} className="text-2xl font-medium uppercase">{t('nav.menu')}</a>
@@ -215,7 +198,7 @@ export default function Home() {
           )}
 
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[calc(100vh-200px)]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-center min-h-[calc(100vh-150px)] sm:min-h-[calc(100vh-200px)]">
             {/* Left Decorative Panel */}
             <div className="hidden lg:block lg:col-span-2 space-y-8">
               <div className="flex flex-col gap-3 items-center py-8">
@@ -242,7 +225,7 @@ export default function Home() {
 
               {/* Main circular image */}
               <div className="relative z-10">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white/80 shadow-2xl">
+                <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 sm:border-8 border-white/80 shadow-2xl">
                   <Image
                     src="https://scontent-qro1-1.xx.fbcdn.net/v/t51.75761-15/471630333_18063161569868313_2387178039315219860_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE7AfChJK670EoRxpK0a6VDvNTa1fL2J4W81NrV8vYnhayW72xMHlHObW8RH34TLyML9hkzWGsHYZhSmSCTMe52&_nc_ohc=xU7WZfD-ED0Q7kNvwEqMz5b&_nc_oc=Admzoxdm52bI6moI-Z6qp6CPKWYoAOoVFbs8gMo4IOymI_5Ie18PpRLriTtsV7pJArUs_hA150JJKPBQXx_CSh73&_nc_zt=23&_nc_ht=scontent-qro1-1.xx&_nc_gid=ZB8o8Xueb3VP4WqP4GJNQA&oh=00_AfuTL62DbMrUv6FuDeTJ6LDsMSnAcJQ11hGT34lrMFY1tg&oe=69909636"
                     alt="Coffee and cookies"
@@ -276,36 +259,36 @@ export default function Home() {
             </div>
 
             {/* Right Content Section */}
-            <div className="lg:col-span-5 space-y-8 text-[#5C4A3D]">
-              <div className="flex items-center gap-4 mb-6">
+            <div className="lg:col-span-5 space-y-4 sm:space-y-6 lg:space-y-8 text-[#5C4A3D]">
+              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
                 <div className="flex gap-1">
                   {[1,2,3,4,5,6,7].map((i) => (
-                    <div key={i} className="w-2 h-2 rounded-full bg-[#A68B75]/40" />
+                    <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#A68B75]/40" />
                   ))}
                 </div>
-                <span className="text-4xl text-[#A68B75]">+</span>
+                <span className="text-2xl sm:text-3xl lg:text-4xl text-[#A68B75]">+</span>
               </div>
 
-              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-serif italic text-black leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif italic text-black leading-tight">
                 Sinforosa Café
               </h1>
 
-              <div className="bg-[#5C4A3D] text-white inline-block px-6 py-3 text-sm font-light tracking-widest">
+              <div className="bg-[#5C4A3D] text-white inline-block px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-light tracking-widest">
                 {t('hero.tagline')}
               </div>
 
-              <p className="text-sm leading-relaxed text-black max-w-md text-[#5C4A3D]/80 font-light">
+              <p className="text-xs sm:text-sm leading-relaxed text-black max-w-md text-[#5C4A3D]/80 font-light">
                 {t('hero.description')}
               </p>
 
-              <Button onClick={() => {}} className="rounded-full bg-[#5C4A3D] hover:bg-[#3D2E23] text-white px-10 py-6 text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105">
+              <Button onClick={() => {}} className="rounded-full bg-[#5C4A3D] hover:bg-[#3D2E23] text-white px-6 sm:px-10 py-3 sm:py-6 text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105">
                 {t('hero.order')}
               </Button>
 
-              <div className="flex gap-2 mt-8">
-                <div className="w-16 h-1 bg-[#A68B75]/40" />
-                <div className="w-8 h-1 bg-[#A68B75]/40" />
-                <div className="w-4 h-1 bg-[#A68B75]/40" />
+              <div className="flex gap-2 mt-6 sm:mt-8">
+                <div className="w-12 sm:w-16 h-1 bg-[#A68B75]/40" />
+                <div className="w-6 sm:w-8 h-1 bg-[#A68B75]/40" />
+                <div className="w-3 sm:w-4 h-1 bg-[#A68B75]/40" />
               </div>
             </div>
           </div>
@@ -313,52 +296,52 @@ export default function Home() {
       </section>
 
       {/* ABOUT SECTION */}
-      <section id="about" className="py-32 md:py-40 bg-[#F5EDE5]">
+      <section id="about" className="py-16 sm:py-24 md:py-32 lg:py-40 bg-[#F5EDE5]">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
             <div className="order-2 md:order-1">
-              <p className="text-xs font-light tracking-[0.3em] uppercase text-[#A68B75] mb-4">
+              <p className="text-xs font-light tracking-[0.3em] uppercase text-[#A68B75] mb-3 sm:mb-4">
                 {t('about.badge')}
               </p>
-              <h2 className="text-5xl md:text-6xl font-serif italic color-black tracking-wide text-[#5C4A3D] mb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic color-black tracking-wide text-[#5C4A3D] mb-6 sm:mb-8">
                 {t('about.welcome').split('\n').map((line, i) => (<span key={i}>{line}<br/></span>))}
               </h2>
-              <div className="flex gap-1 mb-8">
+              <div className="flex gap-1 mb-6 sm:mb-8">
                 {[1,2,3,4,5].map((_, i) => (
-                  <div key={i} className="w-2 h-2 rounded-full bg-[#A68B75]/40" />
+                  <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#A68B75]/40" />
                 ))}
               </div>
-              <p className="text-[#5C4A3D]/80 font-light text-base leading-relaxed mb-6">
+              <p className="text-[#5C4A3D]/80 font-light text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
                 En Sinforosa Café nos enorgullece servir café de especialidad excepcional
                 acompañado de pastelería artesanal deliciosa. Nuestro ambiente cómodo crea
                 el entorno ideal tanto para ser productivo como para relajarte.
               </p>
-              <p className="text-[#5C4A3D]/80 font-light text-base leading-relaxed mb-8">
+              <p className="text-[#5C4A3D]/80 font-light text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
                 Ya sea que busques un espacio tranquilo con WiFi confiable, disfrutar de
                 nuestra terraza al aire libre, o simplemente saborear un café y postres de calidad,
                 Sinforosa Café te recibe todos los días de 7:00 AM a 9:00 PM.
               </p>
-              <div className="grid grid-cols-2 gap-8 pt-8">
-                <div className="border-l-2 border-[#A68B75] pl-6 group">
-                    <h4 className="text-lg font-medium text-[#5C4A3D] mb-1 tracking-wide">Buen Café</h4>
-                    <p className="text-sm text-[#5C4A3D]/60 font-light leading-relaxed">Granos de especialidad y preparación experta</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 pt-6 sm:pt-8">
+                <div className="border-l-2 border-[#A68B75] pl-4 sm:pl-6 group">
+                    <h4 className="text-base sm:text-lg font-medium text-[#5C4A3D] mb-1 tracking-wide">Buen Café</h4>
+                    <p className="text-xs sm:text-sm text-[#5C4A3D]/60 font-light leading-relaxed">Granos de especialidad y preparación experta</p>
                 </div>
-                <div className="border-l-2 border-[#A68B75] pl-6 group">
-                    <h4 className="text-lg font-medium text-[#5C4A3D] mb-1 tracking-wide">Postres Deliciosos</h4>
-                    <p className="text-sm text-[#5C4A3D]/60 font-light leading-relaxed">Pastelería y tartas frescas a diario</p>
+                <div className="border-l-2 border-[#A68B75] pl-4 sm:pl-6 group">
+                    <h4 className="text-base sm:text-lg font-medium text-[#5C4A3D] mb-1 tracking-wide">Postres Deliciosos</h4>
+                    <p className="text-xs sm:text-sm text-[#5C4A3D]/60 font-light leading-relaxed">Pastelería y tartas frescas a diario</p>
                 </div>
-                <div className="border-l-2 border-[#A68B75] pl-6 group">
-                    <h4 className="text-lg font-medium text-[#5C4A3D] mb-1 tracking-wide">Gran Selección de Tés</h4>
-                    <p className="text-sm text-[#5C4A3D]/60 font-light leading-relaxed">Variedades de té de primera</p>
+                <div className="border-l-2 border-[#A68B75] pl-4 sm:pl-6 group">
+                    <h4 className="text-base sm:text-lg font-medium text-[#5C4A3D] mb-1 tracking-wide">Gran Selección de Tés</h4>
+                    <p className="text-xs sm:text-sm text-[#5C4A3D]/60 font-light leading-relaxed">Variedades de té de primera</p>
                 </div>
-                <div className="border-l-2 border-[#A68B75] pl-6 group">
-                    <h4 className="text-lg font-medium text-[#5C4A3D] mb-1 tracking-wide">Zona Exterior</h4>
-                    <p className="text-sm text-[#5C4A3D]/60 font-light leading-relaxed">Terraza cómoda y agradable</p>
+                <div className="border-l-2 border-[#A68B75] pl-4 sm:pl-6 group">
+                    <h4 className="text-base sm:text-lg font-medium text-[#5C4A3D] mb-1 tracking-wide">Zona Exterior</h4>
+                    <p className="text-xs sm:text-sm text-[#5C4A3D]/60 font-light leading-relaxed">Terraza cómoda y agradable</p>
                 </div>
               </div>
             </div>
             <div className="order-1 md:order-2 group">
-              <div className="relative overflow-hidden h-[600px] rounded-full shadow-2xl">
+              <div className="relative overflow-hidden h-[400px] sm:h-[500px] md:h-[600px] rounded-full shadow-2xl">
                 <Image
                   src="https://scontent-qro1-2.xx.fbcdn.net/v/t51.82787-15/610255853_18099566248868313_9011904697642202043_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHn3guSNmmNJfHmKk7g7YG7p6Df7Q7tZCqnoN_tDu1kKpT7h6kwPkZs8_dp4TAB290guBRMjtDaBD1RLVwdFcOe&_nc_ohc=EtZiWf_4RE8Q7kNvwEKEceA&_nc_oc=AdkzLjgiVQjZFEK8ciCS1aRmsz6MzjuM95PgPmnzwmMNpPomLXh_KVOjGaVs6sHkEULyULL7UfEXnJvQmSeUVxfU&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=XGpSXfdxAHBp-SgjRv-CJQ&oh=00_AfutMutMF6VkXObOb17WvO1HJftp0byLPSU_1I1IjW40Tg&oe=69912FC5"
                   alt="Coffee shop interior"
@@ -374,7 +357,7 @@ export default function Home() {
       </section>
 
       {/* MENU HERO SECTION - Simplified */}
-      <section id="menu" className="relative py-32 md:py-40 bg-gradient-to-br from-[#E8D5C4] via-[#D4B5A0] to-[#C9A88A] overflow-hidden">
+      <section id="menu" className="relative py-16 sm:py-24 md:py-32 lg:py-40 bg-gradient-to-br from-[#E8D5C4] via-[#D4B5A0] to-[#C9A88A] overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div className="w-64 h-64 rounded-full border-4 border-[#5C4A3D]" />
@@ -383,31 +366,31 @@ export default function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8">
-              <Coffee className="w-16 h-16 text-[#5C4A3D] mx-auto mb-6" />
+            <div className="mb-6 sm:mb-8">
+              <Coffee className="w-12 h-12 sm:w-16 sm:h-16 text-[#5C4A3D] mx-auto mb-4 sm:mb-6" />
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-serif italic text-[#5C4A3D] mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif italic text-[#5C4A3D] mb-4 sm:mb-6">
               {t('menu.title')}
             </h2>
 
-            <p className="text-lg md:text-xl text-[#5C4A3D]/80 font-light mb-4 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#5C4A3D]/80 font-light mb-3 sm:mb-4 max-w-2xl mx-auto leading-relaxed px-4">
               Descubre nuestra selección de cafés de especialidad, tostadas gourmet y repostería artesanal. Cada producto preparado con amor y los mejores ingredientes.
             </p>
 
-            <p className="text-sm text-[#5C4A3D]/60 font-light tracking-wider uppercase mb-12">
+            <p className="text-xs sm:text-sm text-[#5C4A3D]/60 font-light tracking-wider uppercase mb-8 sm:mb-12">
               {t('menu.note')}
             </p>
 
             <Link href="/menu">
-              <Button className="rounded-full bg-[#5C4A3D] hover:bg-[#3D2E23] text-white px-12 py-6 text-base tracking-widest uppercase transition-all duration-300 hover:scale-105 shadow-xl">
+              <Button className="rounded-full bg-[#5C4A3D] hover:bg-[#3D2E23] text-white px-8 py-4 sm:px-12 sm:py-6 text-sm sm:text-base tracking-widest uppercase transition-all duration-300 hover:scale-105 shadow-xl">
                 Ver Menú Completo
               </Button>
             </Link>
 
             {/* Preview images */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16 max-w-3xl mx-auto">
-              <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mt-12 sm:mt-16 max-w-3xl mx-auto">
+              <div className="relative h-48 sm:h-56 md:h-64 rounded-2xl overflow-hidden shadow-lg group">
                 <Image
                   src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800"
                   alt="Coffee"
@@ -415,11 +398,11 @@ export default function Home() {
                   height={400}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
-                  <span className="text-white font-semibold text-sm">Cafés</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3 sm:p-4">
+                  <span className="text-white font-semibold text-xs sm:text-sm">Cafés</span>
                 </div>
               </div>
-              <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
+              <div className="relative h-48 sm:h-56 md:h-64 rounded-2xl overflow-hidden shadow-lg group">
                 <Image
                   src="https://images.unsplash.com/photo-1514481538271-cf9f99627ab4?q=80&w=800"
                   alt="Toasts"
@@ -427,11 +410,11 @@ export default function Home() {
                   height={400}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
-                  <span className="text-white font-semibold text-sm">Tostadas</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3 sm:p-4">
+                  <span className="text-white font-semibold text-xs sm:text-sm">Tostadas</span>
                 </div>
               </div>
-              <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg group col-span-2 md:col-span-1">
+              <div className="relative h-48 sm:h-56 md:h-64 rounded-2xl overflow-hidden shadow-lg group col-span-2 md:col-span-1">
                 <Image
                   src="https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800"
                   alt="Bakery"
@@ -439,8 +422,8 @@ export default function Home() {
                   height={400}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
-                  <span className="text-white font-semibold text-sm">Repostería</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3 sm:p-4">
+                  <span className="text-white font-semibold text-xs sm:text-sm">Repostería</span>
                 </div>
               </div>
             </div>
@@ -449,21 +432,21 @@ export default function Home() {
       </section>
 
       {/* REVIEWS SECTION */}
-      <section id="reviews" className="py-32 md:py-40 bg-[#F5EDE5]">
+      <section id="reviews" className="py-16 sm:py-24 md:py-32 lg:py-40 bg-[#F5EDE5]">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-16">
-            <p className="text-xs font-light tracking-[0.3em] uppercase text-[#A68B75] mb-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="text-xs font-light tracking-[0.3em] uppercase text-[#A68B75] mb-3 sm:mb-4">
               {t('reviews.title')}
             </p>
-            <h2 className="text-5xl md:text-6xl font-serif italic text-[#5C4A3D] mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic text-[#5C4A3D] mb-6 sm:mb-8">
               Reseñas de Clientes
             </h2>
-            <div className="flex gap-1 justify-center mb-8">
+            <div className="flex gap-1 justify-center mb-6 sm:mb-8">
               {[1,2,3,4,5].map((_, i) => (
-                <div key={i} className="w-2 h-2 rounded-full bg-[#A68B75]/40" />
+                <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#A68B75]/40" />
               ))}
             </div>
-            <p className="text-[#5C4A3D]/80 font-light text-lg mb-12">
+            <p className="text-[#5C4A3D]/80 font-light text-sm sm:text-base lg:text-lg mb-8 sm:mb-12">
               {t('reviews.basedOn')}
             </p>
           </div>
@@ -551,32 +534,32 @@ export default function Home() {
       </section>
 
       {/* CONTACT/VISIT SECTION */}
-      <section id="contact" className="py-32 md:py-40 bg-white">
+      <section id="contact" className="py-16 sm:py-24 md:py-32 lg:py-40 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-16">
-            <p className="text-xs font-light tracking-[0.3em] uppercase text-[#A68B75] mb-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="text-xs font-light tracking-[0.3em] uppercase text-[#A68B75] mb-3 sm:mb-4">
               {t('visit.title')}
             </p>
-            <h2 className="text-5xl md:text-6xl font-serif italic text-[#5C4A3D] mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic text-[#5C4A3D] mb-6 sm:mb-8">
               Visítanos
             </h2>
-            <div className="flex gap-1 justify-center mb-8">
+            <div className="flex gap-1 justify-center mb-6 sm:mb-8">
               {[1,2,3,4,5].map((_, i) => (
-                <div key={i} className="w-2 h-2 rounded-full bg-[#A68B75]/40" />
+                <div key={i} className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#A68B75]/40" />
               ))}
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {/* Address */}
             <div className="text-center group">
-              <div className="w-20 h-20 rounded-full bg-[#F5EDE5] flex items-center justify-center mx-auto mb-6 group-hover:bg-[#A68B75] transition-colors duration-300">
-                <MapPin className="w-8 h-8 text-[#A68B75] group-hover:text-white" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#F5EDE5] flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-[#A68B75] transition-colors duration-300">
+                <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-[#A68B75] group-hover:text-white" />
               </div>
-              <h3 className="text-xl font-medium text-[#5C4A3D] mb-3 tracking-wide">
+              <h3 className="text-lg sm:text-xl font-medium text-[#5C4A3D] mb-2 sm:mb-3 tracking-wide">
                 {t('visit.address')}
               </h3>
-              <p className="text-[#5C4A3D]/80 font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-[#5C4A3D]/80 font-light leading-relaxed">
                 P.º Jurica 110<br />
                 Jurica<br />
                 Santiago de Querétaro, Qro. 76100
@@ -585,13 +568,13 @@ export default function Home() {
 
             {/* Phone */}
             <div className="text-center group">
-              <div className="w-20 h-20 rounded-full bg-[#F5EDE5] flex items-center justify-center mx-auto mb-6 group-hover:bg-[#A68B75] transition-colors duration-300">
-                <Phone className="w-8 h-8 text-[#A68B75] group-hover:text-white" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#F5EDE5] flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-[#A68B75] transition-colors duration-300">
+                <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-[#A68B75] group-hover:text-white" />
               </div>
-              <h3 className="text-xl font-medium text-[#5C4A3D] mb-3 tracking-wide">
+              <h3 className="text-lg sm:text-xl font-medium text-[#5C4A3D] mb-2 sm:mb-3 tracking-wide">
                 {t('visit.phone')}
               </h3>
-              <p className="text-[#5C4A3D]/80 font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-[#5C4A3D]/80 font-light leading-relaxed">
                 <a href="tel:+524427735976" className="hover:text-[#A68B75] transition-colors">
                   +52 442 773 5976
                 </a>
@@ -600,30 +583,30 @@ export default function Home() {
 
             {/* Hours */}
             <div className="text-center group">
-              <div className="w-20 h-20 rounded-full bg-[#F5EDE5] flex items-center justify-center mx-auto mb-6 group-hover:bg-[#A68B75] transition-colors duration-300">
-                <Clock className="w-8 h-8 text-[#A68B75] group-hover:text-white" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#F5EDE5] flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-[#A68B75] transition-colors duration-300">
+                <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-[#A68B75] group-hover:text-white" />
               </div>
-              <h3 className="text-xl font-medium text-[#5C4A3D] mb-3 tracking-wide">
+              <h3 className="text-lg sm:text-xl font-medium text-[#5C4A3D] mb-2 sm:mb-3 tracking-wide">
                 {t('visit.hours')}
               </h3>
-              <p className="text-[#5C4A3D]/80 font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-[#5C4A3D]/80 font-light leading-relaxed">
                 Lunes - Domingo<br />
                 7:00 AM - 9:00 PM
               </p>
-              <div className="mt-2 inline-block bg-[#A68B75] text-white px-3 py-1 rounded-full text-xs font-medium tracking-wider">
+              <div className="mt-2 inline-block bg-[#A68B75] text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium tracking-wider">
                 {t('visit.open')}
               </div>
             </div>
 
             {/* Services */}
             <div className="text-center group">
-              <div className="w-20 h-20 rounded-full bg-[#F5EDE5] flex items-center justify-center mx-auto mb-6 group-hover:bg-[#A68B75] transition-colors duration-300">
-                <Coffee className="w-8 h-8 text-[#A68B75] group-hover:text-white" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#F5EDE5] flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-[#A68B75] transition-colors duration-300">
+                <Coffee className="w-6 h-6 sm:w-8 sm:h-8 text-[#A68B75] group-hover:text-white" />
               </div>
-              <h3 className="text-xl font-medium text-[#5C4A3D] mb-3 tracking-wide">
+              <h3 className="text-lg sm:text-xl font-medium text-[#5C4A3D] mb-2 sm:mb-3 tracking-wide">
                 Servicios
               </h3>
-              <p className="text-[#5C4A3D]/80 font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-[#5C4A3D]/80 font-light leading-relaxed">
                 Café para llevar<br />
                 Entrega a domicilio<br />
                 WiFi gratuito
@@ -632,14 +615,14 @@ export default function Home() {
           </div>
 
           {/* Map or additional info */}
-          <div className="mt-16">
-            <p className="text-[#5C4A3D]/60 font-light mb-8 text-center max-w-2xl mx-auto">
+          <div className="mt-12 sm:mt-16">
+            <p className="text-[#5C4A3D]/60 font-light mb-6 sm:mb-8 text-center max-w-2xl mx-auto text-sm sm:text-base px-4">
               Ubicado en Jurica, Santiago de Querétaro, te esperamos para disfrutar de un café excepcional en un ambiente único.
             </p>
 
             {/* Google Maps Embed */}
-            <div className="max-w-4xl mx-auto mb-8">
-              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+            <div className="max-w-4xl mx-auto mb-6 sm:mb-8">
+              <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.8476!2d-100.3899!3d20.5881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35b2c8b8b8b8b%3A0x1234567890abcdef!2zUC4gSnVyaWNhIDExMCwgSnVyaWNhLCA3NjEwMCBTYW50aWFnbyBkZSBRdWVyw6l0YXJvLCBRcm8u!5e0!3m2!1ses!2smx!4v1703123456789!5m2!1ses!2smx"
                   width="100%"
@@ -654,17 +637,17 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="text-center">
-              <p className="text-[#5C4A3D]/80 font-light mb-6">
+            <div className="text-center px-4">
+              <p className="text-[#5C4A3D]/80 font-light mb-4 sm:mb-6 text-sm sm:text-base">
                 <strong>Dirección:</strong> P.º Jurica 110, Jurica, 76100 Santiago de Querétaro, Qro.
               </p>
-              <div className="flex justify-center gap-4">
-                <Button className="rounded-full bg-[#5C4A3D] hover:bg-[#3D2E23] text-white px-8 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105">
+              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                <Button className="rounded-full bg-[#5C4A3D] hover:bg-[#3D2E23] text-white px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105">
                   <a href="https://www.google.com/maps/dir/?api=1&destination=P.%C2%BA+Jurica+110,+Jurica,+76100+Santiago+de+Quer%C3%A9taro,+Qro." target="_blank" rel="noopener noreferrer" className="block w-full h-full flex items-center justify-center">
                     Cómo Llegar
                   </a>
                 </Button>
-                <Button variant="outline" className="rounded-full border-[#A68B75] text-[#5C4A3D] hover:bg-[#A68B75] hover:text-white px-8 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105">
+                <Button variant="outline" className="rounded-full border-[#A68B75] text-[#5C4A3D] hover:bg-[#A68B75] hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105">
                   <a href="tel:+524427735976" className="block w-full h-full flex items-center justify-center">
                     Llamar Ahora
                   </a>
@@ -676,24 +659,24 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-[#5C4A3D] text-[#E8D5C4] py-16">
+      <footer className="bg-[#5C4A3D] text-[#E8D5C4] py-12 sm:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
             <div>
-              <h3 className="text-3xl font-serif italic tracking-wide mb-4">
+              <h3 className="text-2xl sm:text-3xl font-serif italic tracking-wide mb-3 sm:mb-4">
                 Sinforosa Café
               </h3>
-              <p className="text-[#E8D5C4]/80 font-light mb-4">
+              <p className="text-[#E8D5C4]/80 font-light mb-3 sm:mb-4 text-sm sm:text-base">
                 Café de especialidad y pastelería artesanal
               </p>
               <div className="flex items-center gap-2">
                 {renderStars(4.3)}
-                <span className="ml-2 font-light">4.3 (432 reviews)</span>
+                <span className="ml-2 font-light text-sm">4.3 (432 reviews)</span>
               </div>
             </div>
             <div>
-              <h4 className="text-xl font-medium mb-4 tracking-wide">Enlaces Rápidos</h4>
-              <ul className="space-y-3">
+              <h4 className="text-lg sm:text-xl font-medium mb-3 sm:mb-4 tracking-wide">Enlaces Rápidos</h4>
+              <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
                 <li>
                   <a href="#menu" className="text-[#E8D5C4]/80 font-light hover:text-[#E8D5C4] transition-colors">
                     Nuestro Menú
@@ -720,17 +703,17 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="text-xl font-medium mb-4 tracking-wide">Ordena Ahora</h4>
-              <p className="text-[#E8D5C4]/80 font-light mb-4">
+              <h4 className="text-lg sm:text-xl font-medium mb-3 sm:mb-4 tracking-wide">Ordena Ahora</h4>
+              <p className="text-[#E8D5C4]/80 font-light mb-3 sm:mb-4 text-sm sm:text-base">
                 Disponible para entrega a domicilio
               </p>
-              <Button className="rounded-full font-light px-8 py-5 bg-[#E8D5C4] text-[#5C4A3D] hover:bg-white transition-all duration-300 hover:scale-105">
+              <Button className="rounded-full font-light px-6 py-3 sm:px-8 sm:py-5 bg-[#E8D5C4] text-[#5C4A3D] hover:bg-white transition-all duration-300 hover:scale-105 text-sm sm:text-base">
                 Ordena en Línea
               </Button>
             </div>
           </div>
-          <div className="border-t border-[#A68B75] pt-8 text-center">
-            <p className="text-[#E8D5C4]/70 font-light text-xs tracking-widest">
+          <div className="border-t border-[#A68B75] pt-6 sm:pt-8 text-center">
+            <p className="text-[#E8D5C4]/70 font-light text-xs tracking-widest px-4">
               © {new Date().getFullYear()} SINFOROSA CAFÉ. TODOS LOS DERECHOS RESERVADOS.
             </p>
           </div>
