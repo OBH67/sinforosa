@@ -17,6 +17,22 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.machospitalitygroup.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.nestleprofessional-latam.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'eladelantado.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i0.wp.com',
       }
     ],
   },

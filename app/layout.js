@@ -16,9 +16,9 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata = {
-  title: "Sinforosa Café - Specialty Coffee & Artisan Pastries in Querétaro",
+  title: "Cafeteria - Specialty Coffee & Artisan Pastries in Querétaro",
   description: "Quality specialty coffee, delicious pastries, and comfortable atmosphere. Open daily 7 AM - 9 PM in Santiago de Querétaro. ⭐ 4.3/5 rating. Dine-in, takeaway & delivery available.",
-  keywords: "coffee shop Querétaro, specialty coffee, artisan pastries, café, croissants, outdoor seating, laptop friendly, Sinforosa Café",
+  keywords: "coffee shop Querétaro, specialty coffee, artisan pastries, café, croissants, outdoor seating, laptop friendly, Cafeteria",
 };
 
 export default function RootLayout({ children }) {

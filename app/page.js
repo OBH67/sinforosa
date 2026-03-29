@@ -43,7 +43,7 @@ export default function Home() {
     es: {
       nav: { home: 'INICIO', about: 'SOBRE NOSOTROS', menu: 'MENÚ', contact: 'CONTACTO' },
       hero: { tagline: 'CAFÉ DE ESPECIALIDAD Y PASTELERÍA', description: 'Café de calidad, pastelería deliciosa y un ambiente cómodo. El lugar perfecto para trabajar, relajarte o reunirte con amigos alrededor de una taza perfectamente preparada.', order: 'ORDENAR AHORA' },
-      about: { badge: 'Sobre Nosotros', welcome: 'Bienvenido a\nSinforosa Café' },
+      about: { badge: 'Sobre Nosotros', welcome: 'Bienvenido a\nCafeteria' },
       services: { title: 'Cómo te atendemos', subtitle: 'Disfruta de nuestro café a tu manera - en el local, para llevar o a domicilio' },
       menu: { title: 'Nuestro Menú', note: 'Todos los precios en MXN • Ticket promedio: $100–$200', filters: { all: 'Todos', coffee: 'Café', toasts: 'Tostadas', bakery: 'Panadería' } },
       reviews: { title: 'Reseñas de Clientes', basedOn: 'Basado en 432 reseñas' },
@@ -53,7 +53,7 @@ export default function Home() {
     en: {
       nav: { home: 'HOME', about: 'ABOUT', menu: 'MENU', contact: 'CONTACT' },
       hero: { tagline: 'SPECIALTY COFFEE & PASTRIES', description: 'Quality coffee, delicious pastries, and a comfortable atmosphere. The perfect place to work, relax, or catch up with friends over a perfectly brewed cup.', order: 'ORDER NOW' },
-      about: { badge: 'About Us', welcome: 'Welcome to\nSinforosa Café' },
+      about: { badge: 'About Us', welcome: 'Welcome to\nCafeteria' },
       services: { title: 'How We Serve You', subtitle: 'Enjoy our coffee your way - dine in, take away, or have it delivered' },
       menu: { title: 'Our Menu', note: 'All prices in MXN • Average ticket: $100–$200', filters: { all: 'All Items', coffee: 'Coffee', toasts: 'Toasts', bakery: 'Bakery' } },
       reviews: { title: 'Customer Reviews', basedOn: 'Based on 432 reviews' },
@@ -70,43 +70,6 @@ export default function Home() {
       cur = cur[p]
     }
     return cur ?? path
-  }
-
-  // Menu Items (nombres y descripciones en español por defecto)
-  const menuItems = {
-    coffee: [
-      { name: 'Mocha', price: 86, description: 'Mezcla rica de chocolate y espresso', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800' },
-      { name: 'Capuchino', price: 76, description: 'Clásico italiano con leche espumada', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800' },
-      { name: 'Mocha Blanco', price: 88, description: 'Dulce mocha de chocolate blanco', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800' },
-      { name: 'Latte', price: 76, description: 'Espresso suave con leche vaporizada', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800' },
-      { name: 'Americano', price: 74, description: 'Espresso alargado con agua caliente', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800' },
-      { name: 'Cold Brew', price: 84, description: 'Café en frío, extracción suave y refrescante', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800' },
-    ],
-    toasts: [
-      { name: 'Tostada de Aguacate', price: 169, description: 'Aguacate fresco sobre pan artesanal', image: 'https://images.unsplash.com/photo-1514481538271-cf9f99627ab4?q=80&w=800' },
-      { name: 'Tostada de Salmón', price: 209, description: 'Salmón ahumado con queso crema', image: 'https://images.unsplash.com/photo-1514481538271-cf9f99627ab4?q=80&w=800' },
-      { name: 'Tostada de Nopal', price: 181, description: 'Nopal a la parrilla con queso fresco', image: 'https://images.unsplash.com/photo-1514481538271-cf9f99627ab4?q=80&w=800' },
-      { name: 'Tostada Caprese', price: 174, description: 'Jitomate, mozzarella y albahaca', image: 'https://images.unsplash.com/photo-1514481538271-cf9f99627ab4?q=80&w=800' },
-    ],
-    bakery: [
-      { name: 'Croissant Clásico', price: 45, description: 'Hojaldre francés mantecoso', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Croissant de Almendra', price: 55, description: 'Relleno de crema de almendra', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Croissant de Avellana y Chocolate', price: 58, description: 'Relleno de chocolate y avellana', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Galleta con Chips de Chocolate', price: 35, description: 'Caliente y suave', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Galleta Red Velvet', price: 38, description: 'Galleta rica en cacao', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Galleta de Avena y Arándanos', price: 35, description: 'Saludable y deliciosa', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Pastel de Zanahoria', price: 75, description: 'Bizcocho húmedo con frosting de queso crema', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Pastel Red Velvet', price: 78, description: 'Postre clásico con cobertura cremosa', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Brownie', price: 55, description: 'Brownie de chocolate fudgy', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-      { name: 'Banoffee', price: 72, description: 'Tarta de plátano y toffee', image: 'https://images.unsplash.com/photo-1763683944193-c4635a3d3999?q=80&w=800' },
-    ]
-  }
-
-  const getFilteredItems = () => {
-    if (activeCategory === 'all') {
-      return [...menuItems.coffee, ...menuItems.toasts, ...menuItems.bakery]
-    }
-    return menuItems[activeCategory] || []
   }
 
   const renderStars = (rating) => {
@@ -141,8 +104,8 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="https://scontent-qro1-2.xx.fbcdn.net/v/t51.82787-15/520615400_18081791491868313_2458016058090436415_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEh4j2AegAXbq9ZxVY5AI5z9lNyZlHajmX2U3JmUdqOZaYXwVSQ5A5KZfjmB2_25XL4Crnao-JgTY_hn766gU7Y&_nc_ohc=dtNE_Kam0tkQ7kNvwHiSXhf&_nc_oc=AdlxeKOxZTD-1KpyNxsIHY8WqB-AreRpbDM_aFf-9U3q7FE_KhieHt1gprXf7SS4ZTidvn0EQ17or5x2qRK5xbRG&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=YoBEhu4_6juCCexNruZR3A&oh=00_Afvt8-1Np6kE9GwVAAFpmLinjnBmffG3HFtpLwYoerhEwg&oe=6990685A"
-            alt="Sinforosa Café Entrance"
+            src="https://www.machospitalitygroup.com/wp-content/uploads/2024/07/Cafeteria15L-25.jpg"
+            alt="Cafeteria Entrance"
             fill
             className="object-cover"
             style={{ objectPosition: 'center 10%' }}
@@ -181,7 +144,7 @@ export default function Home() {
                 <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#5C4A3D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>
               <div role="button" onClick={() => handleNavClick('home')} className="hidden lg:flex w-20 h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden bg-[#A68B75] items-center justify-center shadow-xl cursor-pointer">
-                <Image src="/logo.png" alt="Sinforosa Café" width={96} height={96} className="w-full h-full object-cover" />
+                <Image src="/valzar.png" alt="Sinforosa Café" width={96} height={96} className="w-full h-full object-cover" />
               </div>
             </div>
           </nav>
@@ -227,7 +190,7 @@ export default function Home() {
               <div className="relative z-10">
                 <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 sm:border-8 border-white/80 shadow-2xl">
                   <Image
-                    src="https://scontent-qro1-1.xx.fbcdn.net/v/t51.75761-15/471630333_18063161569868313_2387178039315219860_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE7AfChJK670EoRxpK0a6VDvNTa1fL2J4W81NrV8vYnhayW72xMHlHObW8RH34TLyML9hkzWGsHYZhSmSCTMe52&_nc_ohc=xU7WZfD-ED0Q7kNvwEqMz5b&_nc_oc=Admzoxdm52bI6moI-Z6qp6CPKWYoAOoVFbs8gMo4IOymI_5Ie18PpRLriTtsV7pJArUs_hA150JJKPBQXx_CSh73&_nc_zt=23&_nc_ht=scontent-qro1-1.xx&_nc_gid=ZB8o8Xueb3VP4WqP4GJNQA&oh=00_AfuTL62DbMrUv6FuDeTJ6LDsMSnAcJQ11hGT34lrMFY1tg&oe=69909636"
+                    src="https://www.nestleprofessional-latam.com/sites/default/files/styles/np_article_small/public/2024-04/todo-necesario-abrir-cafeteria-mesera.jpg?itok=zQ9ycj8J"
                     alt="Coffee and cookies"
                     width={800}
                     height={800}
@@ -238,7 +201,7 @@ export default function Home() {
                 {/* Top coffee cup overlay */}
                 <div className="absolute -bottom-8 -right-8 w-44 h-44 rounded-full bg-white shadow-2xl overflow-hidden border-4 border-white">
                   <Image
-                    src="https://scontent-qro1-2.xx.fbcdn.net/v/t51.82787-15/587272872_18097212700868313_8694931839964796243_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFppxr9lctvvSrTIwcd5C6clzzdxbhucQSXPN3FuG5xBHMYOUgVOjSu0BDNrspE-mr-j-xQ-ygEGaHH_g_lI9cK&_nc_ohc=GTmCtMxsv90Q7kNvwE0vYtK&_nc_oc=AdlMcQDL850CUNoXdecjb39bJnyIn_tkH9jT-5dC6kFPEiafBXTHizrmThDM6TVmbYE8QuGOfEE8yK8uig6XXjLU&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=BhKM2vXYCtZDDoJRwhL4ww&oh=00_Afvp9TU3Lwmp0pRJ-KzuxzD-XnYKssvMRSiHA-82DOgYlw&oe=69907C08"
+                    src="https://eladelantado.com/actualidad/wp-content/uploads/2025/02/cafe-te-objetivos-fitness.jpg"
                     alt="Coffee cup top view"
                     width={400}
                     height={400}
@@ -270,7 +233,7 @@ export default function Home() {
               </div>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif italic text-black leading-tight">
-                Sinforosa Café
+                Cafeteria
               </h1>
 
               <div className="bg-[#5C4A3D] text-white inline-block px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-light tracking-widest">
@@ -312,14 +275,14 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-[#5C4A3D]/80 font-light text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
-                En Sinforosa Café nos enorgullece servir café de especialidad excepcional
+                En Cafeteria nos enorgullece servir café de especialidad excepcional
                 acompañado de pastelería artesanal deliciosa. Nuestro ambiente cómodo crea
                 el entorno ideal tanto para ser productivo como para relajarte.
               </p>
               <p className="text-[#5C4A3D]/80 font-light text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
                 Ya sea que busques un espacio tranquilo con WiFi confiable, disfrutar de
                 nuestra terraza al aire libre, o simplemente saborear un café y postres de calidad,
-                Sinforosa Café te recibe todos los días de 7:00 AM a 9:00 PM.
+                Cafeteria te recibe todos los días de 7:00 AM a 9:00 PM.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 pt-6 sm:pt-8">
                 <div className="border-l-2 border-[#A68B75] pl-4 sm:pl-6 group">
@@ -343,7 +306,7 @@ export default function Home() {
             <div className="order-1 md:order-2 group">
               <div className="relative overflow-hidden h-[400px] sm:h-[500px] md:h-[600px] rounded-full shadow-2xl">
                 <Image
-                  src="https://scontent-qro1-2.xx.fbcdn.net/v/t51.82787-15/610255853_18099566248868313_9011904697642202043_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHn3guSNmmNJfHmKk7g7YG7p6Df7Q7tZCqnoN_tDu1kKpT7h6kwPkZs8_dp4TAB290guBRMjtDaBD1RLVwdFcOe&_nc_ohc=EtZiWf_4RE8Q7kNvwEKEceA&_nc_oc=AdkzLjgiVQjZFEK8ciCS1aRmsz6MzjuM95PgPmnzwmMNpPomLXh_KVOjGaVs6sHkEULyULL7UfEXnJvQmSeUVxfU&_nc_zt=23&_nc_ht=scontent-qro1-2.xx&_nc_gid=XGpSXfdxAHBp-SgjRv-CJQ&oh=00_AfutMutMF6VkXObOb17WvO1HJftp0byLPSU_1I1IjW40Tg&oe=69912FC5"
+                  src="https://i0.wp.com/foodandpleasure.com/wp-content/uploads/2019/08/restaurantes-para-cenar-al-aire-libre-cdmx-madre-cafe.jpg?fit=960%2C640&ssl=1"
                   alt="Coffee shop interior"
                   width={2940}
                   height={600}
@@ -631,7 +594,7 @@ export default function Home() {
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Ubicación de Sinforosa Café"
+                  title="Ubicación de Cafeteria"
                   className="absolute inset-0"
                 ></iframe>
               </div>
@@ -664,7 +627,7 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
             <div>
               <h3 className="text-2xl sm:text-3xl font-serif italic tracking-wide mb-3 sm:mb-4">
-                Sinforosa Café
+                Cafeteria
               </h3>
               <p className="text-[#E8D5C4]/80 font-light mb-3 sm:mb-4 text-sm sm:text-base">
                 Café de especialidad y pastelería artesanal
@@ -714,7 +677,7 @@ export default function Home() {
           </div>
           <div className="border-t border-[#A68B75] pt-6 sm:pt-8 text-center">
             <p className="text-[#E8D5C4]/70 font-light text-xs tracking-widest px-4">
-              © {new Date().getFullYear()} SINFOROSA CAFÉ. TODOS LOS DERECHOS RESERVADOS.
+              © {new Date().getFullYear()} Cafeteria. TODOS LOS DERECHOS RESERVADOS.
             </p>
           </div>
         </div>
